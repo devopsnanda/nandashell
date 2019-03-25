@@ -1,0 +1,182 @@
+Shell Script
+-------------
+$ who
+$date
+$who am i
+$echo "hello world"
+
+In the above, the shell will give output as follow
+
+[ec2-user@ip-172-31-14-63 ~]$ who
+ec2-user pts/0        2019-03-25 07:51 (210.18.182.216)
+[ec2-user@ip-172-31-14-63 ~]$
+
+[ec2-user@ip-172-31-14-63 ~]$ date
+Mon Mar 25 07:58:54 UTC 2019
+[ec2-user@ip-172-31-14-63 ~]$
+
+[ec2-user@ip-172-31-14-63 ~]$ who am i
+ec2-user pts/0        2019-03-25 07:51 (210.18.182.216)
+[ec2-user@ip-172-31-14-63 ~]$
+
+The above commands can also be run as continous using ; seperator as follows
+
+[ec2-user@ip-172-31-14-63 ~]$ who;date;who am i
+ec2-user pts/0        2019-03-25 07:51 (210.18.182.216)
+Mon Mar 25 08:00:14 UTC 2019
+ec2-user pts/0        2019-03-25 07:51 (210.18.182.216)
+[ec2-user@ip-172-31-14-63 ~]$
+
+Two major shells in unix are
+
+1) Bourne shell (First shell to appear in unix) (sh,ksh and bash) $ sign
+2) C shell (csh and tcsh) % sign
+
+
+
+2 accounts in Unix
+
+Normal user account --- $
+Root user account   --- #
+
+Bourne Shell -- First shell in linux with $ symbol. /bin/sh
+
+shell is the command interpreter. IT takes our command and give the output.
+
+BASH -- Bourne again shell and has replaced the bourne shell sh.
+
+Two components of UNIX
+------------------------
+Utilities
+Kernel
+
+
+utilities
+-----------
+programs you can run or exec. eg: who,date etc
+
+Kernel 
+-------
+Heart of the UNIx system.Loaded into memory when power is OFF. When ON/booted will be loaded  from memory to HDD.
+
+Whereas utilities will be in memory and will be loaded into HDD when executed.
+
+When the date command is executed 3 times, the first time will be executed from hdd and the next times from memory and will be faster.
+
+[ec2-user@ip-172-31-14-63 ~]$ date
+Mon Mar 25 08:21:13 UTC 2019
+[ec2-user@ip-172-31-14-63 ~]$ date
+Mon Mar 25 08:21:15 UTC 2019
+[ec2-user@ip-172-31-14-63 ~]$ date
+Mon Mar 25 08:21:18 UTC 2019
+[ec2-user@ip-172-31-14-63 ~]$
+
+
+Shell initilization
+--------------------
+When login program executes a shell, (username/password) the shell is uninitilzed. To initlize, the shell follows the following process.
+
+/etc/profile
+ . profiel
+
+As soon as the shell both the above files, the shell dispays the prompt.
+
+$
+
+
+Setting the path
+-----------------
+When we type the command
+
+$date
+
+the shell has to locate the command date where it is located. The path specifies the command location 
+
+PATH=/bin:/usr/bin
+
+If the command is not available, use the following
+
+eg:
+
+$man who
+
+It will look for the online help page
+
+
+To create a simple script
+-------------------------
+$ vi login
+date
+who
+:wq!
+
+$ chmod +x login
+
+$ ./login
+[ec2-user@ip-172-31-14-63 ~]$ ./login
+Mon Mar 25 08:33:23 UTC 2019
+ec2-user pts/0        2019-03-25 07:51 (210.18.182.216)
+[ec2-user@ip-172-31-14-63 ~]$
+
+To ensure that the correct shell is used to run the script, you must add the following "magic" line to the
+beginning of the script:
+
+#!/bin/sh
+
+Now the script has 2 lines
+
+The Magic of #!/bin/sh
+The #!/bin/sh must be the first line of a shell script in order for sh to be used to run the script. If this
+appears on any other line, it is treated as a comment and ignored by all shells.
+
+In shell script, comments start with # character.
+
+#!/bin/sh
+# print out the date and who's logged on
+date ; who;
+
+In the above,the lines after the # are commented and will not be considered by the script and shell skips them.
+
+The comment can also be added after the commands as follows.
+
+date ; who ; # execute the date and who commands
+
+uptime
+-------
+[ec2-user@ip-172-31-14-63 ~]$ uptime
+ 08:41:57 up 52 min,  1 user,  load average: 0.00, 0.00, 0.00
+[ec2-user@ip-172-31-14-63 ~]$
+
+The above command explains how long the system is up and running
+
+who -b gives the time the system was last booted.
+
+Working with files
+-------------------
+In unix, there are 3 basic types of files.
+
+1) ordinary files  --- contains data,text or program instruction
+2) Directories     --- It is a folder and contains both ordinary and special files
+3) special files --- provide access to hardware such as hard-drives,CD-ROM drives,modem and ethernet adaptors.
+
+Listing files
+--------------
+List the files and directories stored in current directory
+
+[ec2-user@ip-172-31-14-63 /]$ ls
+bin     dev   lib    lost+found  opt   run      srv  usr
+boot    etc   lib64  media       proc  sbin     sys  var
+cgroup  home  local  mnt         root  selinux  tmp
+[ec2-user@ip-172-31-14-63 /]$
+
+
+
+
+
+
+
+
+
+
+
+ 
